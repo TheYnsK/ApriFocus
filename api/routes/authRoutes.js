@@ -6,6 +6,9 @@ const auth = require('../middleware/authMiddleware');
 // İki Aşamalı Kayıt Sistemi
 router.post('/register-request', authController.registerRequest); // Adım 1
 router.post('/verify-register', authController.verifyRegister);   // Adım 2
+// Eski frontend uyumu için (REGISTER ALIAS)
+router.post('/register', authController.registerRequest);
+
 
 // Giriş İşlemleri
 router.post('/login', authController.login);

@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+  color: #2e3a59;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.note-toolbar select {
+  background-image: none !important;
+  padding-right: 0.5rem !important;
+}
+
+/* =========================
+   PDF Export Fix (html2canvas)
+   Tatil etiketindeki metin kırpılmasını engeller
+   ========================= */
+
+.pdf-export-mode .holiday-badge {
+  /* truncate kaynaklı kırpmayı ez */
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+
+  /* yazı kırpılmasın */
+  line-height: 1.25 !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+
+  /* 2 satır hedefi: çok uzarsa taşmasın (gün kutusunu bozmasın) */
+  max-height: calc(1.25em * 2 + 8px) !important;
+  display: block !important;
+  word-break: break-word !important;
+}
+
+/* Tatil olan günlerde PDF’de hafif ekstra nefes alanı (opsiyonel ama iyi) */
+.pdf-export-mode .day-cell.has-holiday {
+  padding-top: 10px !important;
+}

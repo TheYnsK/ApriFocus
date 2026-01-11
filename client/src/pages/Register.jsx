@@ -10,6 +10,7 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   
+  // eslint-disable-next-line no-unused-vars
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -49,13 +50,11 @@ export default function Register() {
     setErrors({});
 
     try {
-      const res = await api.post("/auth/register", formData);
-      if (res.data.token && res.data.user) {
-          login(res.data.user, res.data.token);
-          navigate("/");
-      } else {
-          navigate("/login");
-      }
+        await api.post("/auth/register-request", formData);
+
+    // Kod mailine gitti → doğrulama ekranına geç
+    navigate("/verify-register", { state: { email: formData.email } });
+
     } catch (error) {
       console.error(error);
       if (error.response?.data?.message) {
@@ -115,7 +114,7 @@ export default function Register() {
                     <input 
                         type="text" 
                         name="username" 
-                        placeholder="Örn: aprifocus_user" 
+                        placeholder="Örn: kullanici123" 
                         className={`w-full pl-12 pr-4 py-4 bg-gray-100/50 border rounded-2xl outline-none transition-all font-medium text-gray-800 placeholder:text-gray-400 focus:bg-white ${errors.username ? "border-red-300" : "border-transparent focus:border-primary/30"}`} 
                         onChange={handleChange} 
                         value={formData.username}

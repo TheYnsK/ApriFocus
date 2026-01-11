@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard";
 import CalendarPage from "./pages/CalendarPage";
 import Settings from "./pages/Settings";
 import NotesPage from "./pages/NotesPage";
+import VerifyRegister from "./pages/VerifyRegister";
+
 
 // ADMIN PAGES
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -72,6 +74,7 @@ useEffect(() => {
       <Route path="/calendar" element={<ProtectedRoute><CalendarPage /></ProtectedRoute>} />
       <Route path="/notes" element={<ProtectedRoute><NotesPage /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+      <Route path="/verify-register" element={!user ? <VerifyRegister /> : <Navigate to="/" />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

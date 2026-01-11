@@ -85,9 +85,5 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-/* ======================
-   VERCEL EXPORT (TEK!)
-====================== */
-module.exports = (req, res) => {
-  return app(req, res);
-};
+// Vercel için handler export (TEK)
+module.exports = (req, res) => app(req, res);
